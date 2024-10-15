@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #0E191B, #152528, #233E43, #31575E);
+    font-family: 'Arial', sans-serif; /* Add a clean font */
+    color: #fff;
+}
+
+#re {
+    background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+    padding: 30px; /* Increase padding for more space */
+    padding-right: 50px;
+    border-radius: 15px; /* Smoother rounded corners */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow for depth */
+    text-align: center;
+    width: fit-content;
+    height: fit-content; /* Allow height to adjust based on content */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth animation */
+}
+
+#re:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+form {
+    display: grid;
+    gap: 7px;
+}
+.flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+label {
+    grid-column: span 2;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #AFCED5;
+}
+
+.ui1{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #AFCED5;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2); /* Slight transparency */
+    color: #fff;
+}
+
+button {
+    grid-column: span 2;
+    padding: 12px;
+    border: none;
+    background-color: #AFCED5;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    margin-top: 30px;
+    
+}
+
+button:hover {
+    background-color: #94BEC7;
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+input::placeholder {
+    color: #bbb; /* Placeholder text color */
+}
