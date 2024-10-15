@@ -6,16 +6,12 @@ import (
 )
 
 func InsertUser(db *sql.DB, user structs.User) error {
-	query := `
-	INSERT INTO users (Nickname, Age, Gender, FirstName, LastName, Email, Password)
-	VALUES (?, ?, ?, ?, ?, ?, ?)
-`
-	stmt, err := db.Prepare(query)
+	stmt, err := db.Prepare("INSERT INTO users (first_name, last_name, nickname, age, email, password, gender) VALUES (?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(user.Nickname, user.Age, user.Gender, user.FirstName, user.LastName, user.Email, user.Password)
+	_, err = stmt.Exec(user.FirstName, user.LastName, user.Nickname, user.Age, user.Email, user.Password, user.Gender)
 	return err
 }

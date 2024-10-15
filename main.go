@@ -16,6 +16,7 @@ func main() {
 	http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("frontend/js"))))
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("frontend"))))
 	http.Handle("/backend/", http.StripPrefix("/backend/", http.FileServer(http.Dir("backend"))))
+	
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "frontend/index.html")
