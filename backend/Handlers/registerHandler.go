@@ -13,7 +13,7 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 
 		user := structs.User{}
 
-		db, err := sql.Open("sqlite3", "./forum.db")
+		db, err := sql.Open("sqlite3", "./real-forum.db")
 		if err != nil {
 			http.Error(w, "Database connection error", http.StatusInternalServerError)
 			return
