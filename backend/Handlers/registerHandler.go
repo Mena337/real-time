@@ -7,11 +7,9 @@ import (
 	"real-time-forum/backend/structs"
 )
 
-func registerHandler(w http.ResponseWriter, r *http.Request) {
+func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		r.ParseForm()
-
-		user := structs.User{}
 
 		db, err := sql.Open("sqlite3", "./real-forum.db")
 		if err != nil {
@@ -20,7 +18,7 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		defer db.Close()
 
-		err = backend.InsertUser(db, user)
+		err = backend.InsertUser(db, structs.User{})
 		if err != nil {
 			http.Error(w, "Failed to register user", http.StatusInternalServerError)
 			return
