@@ -1,51 +1,11 @@
 package backend
 
 import (
-	"database/sql"
 	"fmt"
-	"log"
 	"net/http"
+	"real-time/backend/structs"
 	"strconv"
-
-	_ "github.com/mattn/go-sqlite3"
 )
-
-type User struct {
-	FirstName string
-	LastName  string
-	Nickname  string
-	Age       int
-	Email     string
-	Password  string
-	Gender    string
-}
-
-var db *sql.DB
-
-func InitDB(dataSourceName string) {
-	var err error
-	db, err = sql.Open("sqlite3", "./real-forum.db")
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func CreateTables() {
-	query := `CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        first_name TEXT,
-        last_name TEXT,
-        nickname TEXT,
-        age INTEGER,
-        email TEXT UNIQUE,
-        password TEXT,
-        gender TEXT
-    );`
-	_, err := db.Exec(query)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -59,7 +19,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user := User{
+	user := structs.User{
 		FirstName: r.FormValue("FirstName"),
 		LastName:  r.FormValue("LastName"),
 		Nickname:  r.FormValue("nickname"),
@@ -68,14 +28,6 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		Password:  r.FormValue("password"),
 		Gender:    r.FormValue("Gender"),
 	}
-
-	// hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-	// if err != nil {
-	// 	http.Error(w, "Failed to hash password", http.StatusInternalServerError)
-	// 	return
-	// }
-
-	// user.Password = string(hashedPassword)
 
 	stmt, err := db.Prepare("INSERT INTO users (first_name, last_name, nickname, age, email, password, gender) VALUES (?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
@@ -100,4 +52,3 @@ func parseInt(value string) int {
 	}
 	return age
 }
-
