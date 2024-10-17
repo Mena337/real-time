@@ -1,10 +1,10 @@
 package Handlers
 
 import (
-	"backend"
-	"backend/structs"
 	"fmt"
 	"net/http"
+	"real-time-forum/backend"
+	"real-time-forum/backend/structs"
 	"strconv"
 )
 

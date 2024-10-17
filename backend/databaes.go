@@ -7,11 +7,11 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var db *sql.DB
+var Db *sql.DB
 
 func InitDB(dataSourceName string) {
 	var err error
-	db, err = sql.Open("sqlite3", "./real-forum.db")
+	Db, err = sql.Open("sqlite3", "./real-forum.db")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -113,21 +113,21 @@ func CreateTables() {
         );`
 
 	// Execute table creation statements
-	ExecuteSQL(db, userTable)
-	ExecuteSQL(db, categoryTable)
-	ExecuteSQL(db, commentTable)
-	ExecuteSQL(db, likeCommentTable)
-	ExecuteSQL(db, dislikeCommentTable)
-	ExecuteSQL(db, likesTable)
-	ExecuteSQL(db, dislikesTable)
-	ExecuteSQL(db, sessionTable)
-	ExecuteSQL(db, postTable)
-	ExecuteSQL(db, postCategoriesTable)
+	ExecuteSQL(Db, userTable)
+	ExecuteSQL(Db, categoryTable)
+	ExecuteSQL(Db, commentTable)
+	ExecuteSQL(Db, likeCommentTable)
+	ExecuteSQL(Db, dislikeCommentTable)
+	ExecuteSQL(Db, likesTable)
+	ExecuteSQL(Db, dislikesTable)
+	ExecuteSQL(Db, sessionTable)
+	ExecuteSQL(Db, postTable)
+	ExecuteSQL(Db, postCategoriesTable)
 }
 
 
-func ExecuteSQL(db *sql.DB, sqlStatement string) {
-	_, err := db.Exec(sqlStatement)
+func ExecuteSQL(Db *sql.DB, sqlStatement string) {
+	_, err := Db.Exec(sqlStatement)
 	if err != nil {
 		log.Fatal(err)
 	}
