@@ -28,6 +28,7 @@ func main() {
 
 	// Add the registration endpoint
 	http.HandleFunc("/register", Handlers.RegisterHandler)
+	http.HandleFunc("/login", Handlers.LoginHandler)
 
 	fmt.Println("Starting server on http://localhost:8080")
 	err := http.ListenAndServe(":8080", nil)
