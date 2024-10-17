@@ -1,9 +1,10 @@
-package backend
+package Handlers
 
 import (
+	"backend"
+	"backend/structs"
 	"fmt"
 	"net/http"
-	"real-time-forum/backend/structs"
 	"strconv"
 )
 
@@ -18,6 +19,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Unable to parse form", http.StatusBadRequest)
 		return
 	}
+
 	user := structs.User{
 		FirstName: r.FormValue("FirstName"),
 		LastName:  r.FormValue("LastName"),
@@ -28,7 +30,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		Gender:    r.FormValue("Gender"),
 	}
 
-	stmt, err := db.Prepare("INSERT INTO users (first_name, last_name, nickname, age, email, password, gender) VALUES (?, ?, ?, ?, ?, ?, ?)")
+	stmt, err := backend.Db.Prepare("INSERT INTO users (first_name, last_name, nickname, age, email, password, gender) VALUES (?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		http.Error(w, "Failed to prepare statement", http.StatusInternalServerError)
 		return

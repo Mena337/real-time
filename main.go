@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	database "real-time-forum/backend"
+	"real-time-forum/backend/Handlers"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -26,7 +27,7 @@ func main() {
 	})
 
 	// Add the registration endpoint
-	http.HandleFunc("/register", database.RegisterHandler)
+	http.HandleFunc("/register", Handlers.RegisterHandler)
 
 	fmt.Println("Starting server on http://localhost:8080")
 	err := http.ListenAndServe(":8080", nil)
