@@ -1,4 +1,4 @@
-package backend
+package structs
 
 type User struct {
 	FirstName string

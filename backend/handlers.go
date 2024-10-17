@@ -3,7 +3,7 @@ package backend
 import (
 	"fmt"
 	"net/http"
-	"real-time/backend/structs"
+	"real-time-forum/backend/structs"
 	"strconv"
 )
 
@@ -18,7 +18,6 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Unable to parse form", http.StatusBadRequest)
 		return
 	}
-
 	user := structs.User{
 		FirstName: r.FormValue("FirstName"),
 		LastName:  r.FormValue("LastName"),
