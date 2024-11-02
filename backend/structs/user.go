@@ -9,3 +9,4 @@ type User struct {
 	Password  string
 	Gender    string
 }
+
